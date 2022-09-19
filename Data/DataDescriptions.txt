@@ -1,0 +1,66 @@
+This file goes through all datasets used (as inputs) in the StarTransfer project and lists descriptions for all variables
+
+Prelim data:
+- StarTransfer_BFLData.csv
+
+- StarTransfer_SkillCraftData.csv
+
+- StarTransfer_HotsUnitsInBFL.csv
+
+Cleaned data:
+- wolVhos_OutputTable.txt
+	- date_time: The date and time of the game played 
+	- playerid_gameid: The player ID and game ID separated by an underscore
+	- PlayerID: Each players' ID number
+	- GameID: The ID number for each game within a players' data
+	- Any_XP: This is our experience variable. One Any_XP is equal to 100 games of any format (even those excluded from the dataset)
+	- falclassic: Our reaction time measure in the scale of the game refresh rate (88.5 per second)
+	- Expansion_level: The patch that the game was played in (Wings of Liberty or Heart of the Swarm)
+	- Version: The version number that the game was played in
+	- falclassic_1: A repeat of the falclassic variable
+	- Transformed_fal2League: A linearly transformed version of falclassic that corresponds to the approximate league rating of the player
+	- race: The players' chosen race for each game
+	- IsHoS: A binary value, set to 1 if the game was in Heart of the Swarm
+	- IsWoL: A binary value, set to 1 if the game was in Wings of Liberty
+	- Cumulative_IsWoL: The cumulative count of Wings of Liberty games
+	- Cumulative_IsHoS: The cumulative count of Heart of the Swarm games
+	- NumberOfNewUnitActions: The count of actions involving new units in Heart of the Swarm
+
+- OnRaceOffRace_OutputTable.txt
+	- date_time: See wolVhos_OutputTable.txt
+	- playerid_gameid: See wolVhos_OutputTable.txt
+	- PlayerID: See wolVhos_OutputTable.txt
+	- GameID: See wolVhos_OutputTable.txt
+	- Any_XP: See wolVhos_OutputTable.txt
+	- falclassic: See wolVhos_OutputTable.txt
+	- Transformed_fal2League: See wolVhos_OutputTable.txt
+	- race: See wolVhos_OutputTable.txt
+	- Dominant_Race: The most commonly chosen race for each player
+	- IsTraining: A binary variable, 1 if the game was played as the dominant race, 0 if the game was another race
+	- IsOffRace_Zerg: A binary variable, 1 if the game was played as Zerg and the player's main race was not Zerg
+	- IsOffRace_Terran: A binary variable, 1 if the game was played as Terran and the player's main race was not Terran
+	- IsOffRace_Protoss: A binary variable, 1 if the game was played as Protoss and the player's main race was not Protoss
+	- Cumulative_OffRace_Zerg: The count of all non dominant Zerg games
+	- Cumulative_OffRace_Terran: The count of all non dominant Terran games
+	- Cumulative_OffRace_Protoss: The count of all non dominant Protoss games
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
