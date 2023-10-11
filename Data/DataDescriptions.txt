@@ -1,66 +1,437 @@
-This file goes through all datasets used (as inputs) in the StarTransfer project and lists descriptions for all variables
 
-Prelim data:
-- StarTransfer_BFLData.csv
+This README.txt file was generated on 08-10-2023 by Robin C. A. Barrett
 
-- StarTransfer_SkillCraftData.csv
+--------------------
 
-- StarTransfer_HotsUnitsInBFL.csv
+GENERAL INFORMATION
 
-Cleaned data:
-- wolVhos_OutputTable.txt
-	- date_time: The date and time of the game played 
-	- playerid_gameid: The player ID and game ID separated by an underscore
-	- PlayerID: Each players' ID number
-	- GameID: The ID number for each game within a players' data
-	- Any_XP: This is our experience variable. One Any_XP is equal to 100 games of any format (even those excluded from the dataset)
-	- falclassic: Our reaction time measure in the scale of the game refresh rate (88.5 per second)
-	- Expansion_level: The patch that the game was played in (Wings of Liberty or Heart of the Swarm)
-	- Version: The version number that the game was played in
-	- falclassic_1: A repeat of the falclassic variable
-	- Transformed_fal2League: A linearly transformed version of falclassic that corresponds to the approximate league rating of the player
-	- race: The players' chosen race for each game
-	- IsHoS: A binary value, set to 1 if the game was in Heart of the Swarm
-	- IsWoL: A binary value, set to 1 if the game was in Wings of Liberty
-	- Cumulative_IsWoL: The cumulative count of Wings of Liberty games
-	- Cumulative_IsHoS: The cumulative count of Heart of the Swarm games
-	- NumberOfNewUnitActions: The count of actions involving new units in Heart of the Swarm
-
-- OnRaceOffRace_OutputTable.txt
-	- date_time: See wolVhos_OutputTable.txt
-	- playerid_gameid: See wolVhos_OutputTable.txt
-	- PlayerID: See wolVhos_OutputTable.txt
-	- GameID: See wolVhos_OutputTable.txt
-	- Any_XP: See wolVhos_OutputTable.txt
-	- falclassic: See wolVhos_OutputTable.txt
-	- Transformed_fal2League: See wolVhos_OutputTable.txt
-	- race: See wolVhos_OutputTable.txt
-	- Dominant_Race: The most commonly chosen race for each player
-	- IsTraining: A binary variable, 1 if the game was played as the dominant race, 0 if the game was another race
-	- IsOffRace_Zerg: A binary variable, 1 if the game was played as Zerg and the player's main race was not Zerg
-	- IsOffRace_Terran: A binary variable, 1 if the game was played as Terran and the player's main race was not Terran
-	- IsOffRace_Protoss: A binary variable, 1 if the game was played as Protoss and the player's main race was not Protoss
-	- Cumulative_OffRace_Zerg: The count of all non dominant Zerg games
-	- Cumulative_OffRace_Terran: The count of all non dominant Terran games
-	- Cumulative_OffRace_Protoss: The count of all non dominant Protoss games
+--------------------
 
 
 
+1. Title of Dataset:  
 
 
 
+2. Author Information
+
+	A. Principal Investigator
+
+		Name: Dr. Joseph Thompson
+
+		Institution: Douglas College 
+
+		Email: thompsonj14@dougalscollege.ca
+
+
+	B. Co-investigator
+
+		Name: Justin W. O'camb
+
+		Institution: Simon Fraser University
+
+
+	C. Co-investigator
+
+		Name: Robin C. A. Barrett
+
+		Institution: Simon Fraser University
+
+
+	D. Co-investigator
+
+		Name: Scott Harrison
+
+		Institution: Simon Fraser University
+
+	E. Co-investigator
+
+		Name: Dr. Mark R. Blair
+
+		Institution: Simon Fraser University 
+
+		
+
+3. Date of data collection: 
+
+
+	Cross-sectional data used in calibration of the fal2league variable was collected in 2011, under Study Number:2011s0302.
+
+	Longitudinal Data used in this analysis 
 
 
 
+4. Geographic location of data collection: 
+
+
+	Simon Fraser University, Burnaby B.C., Canada
 
 
 
+5. Information about funding sources that supported the collection of the data: 
+
+
+	We received no external funding for this project.
 
 
 
+---------------------------
+
+SHARING/ACCESS INFORMATION
+
+---------------------------
+
+
+1. Licenses/restrictions placed on the data: 
+
+
+	This data is available under the Creative Commons Attribution 4.0 International (CC BY 4.0) <https://creativecommons.org/licenses/by/4.0/> 
 
 
 
+2. Was data derived from another source?
 
+
+	Data in these files is dervied from a collection of raw replays which record the moment-to-moment actions and game states within a single match of StarCraft 2.
+
+
+
+3. Recommended citation for this dataset: 
+
+
+	J. Thompson, J. W. O'Camb, R. C. A. Barrett, S. Harrison, M. R. Blair. (2022). StarTransfer. Github. https://github.com/SFU-Cognitive-Science-Lab/StarTransfer
+
+
+
+---------------------
+
+DATA & FILE OVERVIEW
+
+---------------------
+
+
+
+1. File List
+
+
+   A.  BFLSurveyData.csv      
+
+       Short description: This table contains survey repsonses made by players concerning how much experience they had with StarCraft 1, StarCraft 1: Brood War, or other real-time strategy games.
+
+   B.  OnRaceOffRace_OutputTable.csv
+
+   	Short description: Each row in this table represents averaged gameplay data from one game of StarCraft 2 for that player, with an emphasis on whether each game is played using the player's "dominant race" (most frequently played faction), or "Off race", meaning they are playing a faction they do not normally play as. 
+
+   C.  wolVhos_OutputTable.csv
+
+   	Short description: Each row in this table represents averaged gameplay data from one game of StarCraft 2 for that player, with columns representing whether this game was played using "StarCraft 2: Wings of Liberty", or the later version fo the game "StarCraft 2: Heart of the Swarm".
+
+2. Additional related data collected that was not included in the current data package:
+
+
+	Several datasets exist representing middle steps between the raw replay files themselves and these usable datasets. They are not included here, but may be uploaded to osf in future as we remove all identifying information and ensure that ethical standards are met prior to publishment of the data.
+
+
+3. Are there multiple versions of the dataset? No
+
+
+
+---------------------------
+
+METHODOLOGICAL INFORMATION
+
+---------------------------
+
+
+
+1. Description of methods used for collection/generation of data: 
+
+	----brief description of methods for colelction
+
+
+2. Methods for processing the data: 
+
+	A program called Sc2Gears was used to process the raw replay files into usable SQL tables, and these were further processed and filtered using Matlab and R to aggregate performance data into statistically relevant performance metrics.
+
+
+
+3. Instrument- or software-specific information needed to interpret the data: 
+
+	Requires at least R 3.5, run on R Studio
+
+	Code used in analyzing the data and producing graphs is available for download here: https://github.com/SFU-Cognitive-Science-Lab/StarTransfer
+	
+
+4. Standards and calibration information, if appropriate:
+
+	NA
+
+5. Environmental/experimental conditions: 
+
+	NA
+
+6. Describe any quality-assurance procedures performed on the data:
+
+	Every piece of code written to aggregate this data received independent review and verification by 2 other lab members, ensuring that at least 3 people had worked to test every piece of code.
+
+7. People involved with sample collection, processing, analysis and/or submission: 
+
+	Joseph Thompson
+	Mark Blair
+	Cal Woodruff
+	Paul Tupper
+	Scott Harrison
+	Robin Barrett
+	Justin O'Camb
+	
+
+
+
+-----------------------------------------------------------------
+
+DATA-SPECIFIC INFORMATION FOR: BFLSurveyData.csv
+
+-----------------------------------------------------------------
+
+1. Number of variables: 6
+
+2. Number of cases/rows: 108
+
+3. Missing data codes:
+
+        NULL
+
+4. Variable List:            
+
+
+    A. Name: PlayerID
+
+	Description: Each players' ID number
+
+
+    B. Name: sc1_stop
+
+       Description: What year does the player report having stopped playing StarCraft 1 or StarCraft 1: Brood War
+
+       Note: Some players did not make a selection on this survey item, resulting in the option "please choose". These have been interpreted as meaning that the player has no experience with StarCraft 1 or StarCraft 1: Brood War.
+
+    C. Name: sc1_begin
+
+       	Description: What year does the player report having begun playing StarCraft 1 or StarCraft 1: Brood War.
+
+	Note: Some players did not make a selection on this survey item, resulting in the option "please choose". These have been interpreted as meaning that the player has no experience with StarCraft 1 or StarCraft 1: Brood War.
+
+
+    D. Name: sc1_melee
+
+	Description: Does the player have any experience with the StarCraft 1 game-mode titled "melee"
+
+
+    E. Name: rts_play
+
+	Description: Does the player report having any experience with other real-time strategy games
+
+
+-----------------------------------------------------------------
+
+DATA-SPECIFIC INFORMATION FOR: wolVhos_OutputTable.txt
+
+-----------------------------------------------------------------
+
+
+
+1. Number of variables: 17
+
+2. Number of cases/rows: 81656
+
+3. Missing data codes:
+
+        NA
+
+4. Variable List:            
+
+
+    A. Name: date_time
+
+       Description: The date and time of the game played
+
+
+    B. Name: playerid_gameid
+
+       Description: The player ID and game ID separated by an underscore
+
+
+    C. Name: PlayerID
+
+       Description: Each players' ID number
+
+
+    D. Name: GameID
+
+       Description: The ID number for each game within a players' data
+
+
+    E. Name: Any_XP
+
+       Description: This is our experience variable. One Any_XP is equal to 1 game of any format (even those excluded from the dataset)
+
+
+    F. Name: falclassic
+
+       Description: First Action Latency (FAL) represents the time between a player moving their screen and issueing a command of any type. This acts a measure of reaction time, and is reported in the scale of the game's refresh rate (88.5 frames per second)
+
+
+    G. Name: Expansion_level
+
+       Description: The patch that the game was played in (Wings of Liberty or Heart of the Swarm)
+
+
+    H. Name: Version
+
+       Description: The version number that the game was played in
+
+
+    I. Name: falclassic_1
+
+       Description: A repeat of the falclassic variable used in data processing
+
+
+    J. Name: Transformed_fal2League
+
+       Description: A linearly transformed version of falclassic that corresponds to the approximate league ranking that player performed at in this game, based on typical performance for that league as reported in Thompson et al. (2012)
+
+
+    K. Name: race
+
+       Description: The players' chosen race for each game (Protoss, Zerg, Terran)
+
+
+    L. Name: IsHoS
+
+       Description: A binary value, set to 1 if the game was in Heart of the Swarm
+
+
+    M. Name: IsWoL
+
+       Description: A binary value, set to 1 if the game was in Wings of Liberty
+
+
+    N. Name: Cumulative_IsWoL
+
+       Description: The cumulative count of Wings of Liberty games for this player
+
+
+    O. Name: Cumulative_IsHoS
+
+       Description: The cumulative count of Heart of the Swarm games for this player
+
+
+    P. Name: NumberOfNewUnitActions
+
+       Description: The Heart of the Swarm expansion featured several new game units. This variable counts the number of actions involving new units in Heart of the Swarm by the survey player for each game.
+
+    Q. Name: 1v1_AnyXp
+
+       Description: This is the same as Any_XP, except that only games played in the 1 versus 1 format are counted here.
+
+-----------------------------------------------------------------
+
+DATA-SPECIFIC INFORMATION FOR: OnRaceOffRace_OutputTable.txt
+
+-----------------------------------------------------------------
+
+1. Number of variables: 17
+
+2. Number of cases/rows: 81656
+
+3. Missing data codes:
+
+        NA
+
+4. Variable List:            
+
+
+    A. Name: date_time
+
+       Description: The date and time of the game played
+
+
+    B. Name: playerid_gameid
+
+       Description: The player ID and game ID separated by an underscore
+
+
+    C. Name: PlayerID
+
+       Description: Each players' ID number
+
+
+    D. Name: GameID
+
+       Description: The ID number for each game within a players' data
+
+
+    E. Name: Any_XP
+
+       Description: This is our experience variable. One Any_XP is equal to 1 game of any format (even those excluded from the dataset)
+
+
+    F. Name: falclassic
+
+       Description: First Action Latency (FAL) represents the time between a player moving their screen and issueing a command of any type. This acts a measure of reaction time, and is reported in the scale of the game's refresh rate (88.5 frames per second)
+
+    G. Name: Transformed_fal2League
+
+       Description: A linearly transformed version of falclassic that corresponds to the approximate league ranking that player performed at in this game, based on typical performance for that league as reported in Thompson et al. (2012)
+
+
+    H. Name: race
+
+       Description: The in-game race chosen by the player for this game
+
+
+    I. Name: Dominant_Race
+
+       Description: The most commonly chosen race for that player across all their games
+
+
+    J. Name: IsTraining
+
+       Description: A binary variable, 1 if the game was played as the dominant race, 0 if the game was another race
+
+
+    K. Name: IsOffRace_Zerg
+
+       Description: A binary variable, 1 if the game was played as Zerg and the player's main race was not Zerg
+
+
+    L. Name: IsOffRace_Terran
+
+       Description: A binary variable, 1 if the game was played as Terran and the player's main race was not Terran
+
+
+    M. Name: IsOffRace_Protoss
+
+       Description: A binary variable, 1 if the game was played as Protoss and the player's main race was not Protoss
+
+
+    N. Name: Cumulative_OffRace_Zerg
+
+       Description: A cumulative count of all Zerg games when that player's dominant race is not Zerg
+
+
+    O. Name: Cumulative_OffRace_Terran
+
+       Description: A cumulative count of all Terran games when that player's dominant race is not Terran
+
+
+    P. Name: Cumulative_OffRace_Protoss
+
+       Description: A cumulative count of all Protoss games when that player's dominant race is not Protoss
+
+
+    Q. Name: 1v1_AnyXp
+
+       Description: This is the same as Any_XP, except that only games played in the 1 versus 1 format are counted here.
 
 
