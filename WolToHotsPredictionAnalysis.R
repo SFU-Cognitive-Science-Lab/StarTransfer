@@ -35,7 +35,12 @@ library(grid)
 library('pwr')
 
 library(readr)
-wolVhos_OutputTable <- read_csv("Current Data/wolVhos_OutputTable.txt")
+
+# This sets the working directory to the location of this script
+wd = dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(wd)
+
+wolVhos_OutputTable <- read_csv("Data/wolVhos_OutputTable.txt")
 
 
 #### Preamble ####

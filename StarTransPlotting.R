@@ -23,22 +23,17 @@ library(ggplot2)
 #install.packages("gridExtra")
 library(gridExtra)
 
-# requires password DATATWO2 be set in advance
-#DATATWO2 =
 
-
-
-
-
-
-
+# This sets the working directory to the location of this script
+wd = dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(wd)
 
 
 
 ### Race Analysis ###
 
 ## Get Data
-Data <- read_csv("F:/GitHub/InProgress/Starcraft/StarTransfer/Code/Current Data/OnRaceOffRace_OutputTable.txt")
+Data <- read_csv("Data/OnRaceOffRace_OutputTable.txt")
 
 #Set factors
 Data$PlayerID=as.factor(Data$PlayerID)
@@ -227,7 +222,7 @@ Race.XPplot <- ggplot(race.PlotData, aes(x=player.Any_XP.x, y=Race.Delta)) +
 ### SC1 Analysis ###
 
 ## Get Data
-PerformanceData <- read_csv("F:/GitHub/InProgress/Starcraft/StarTransfer/Code/Current Data/OnRaceOffRace_OutputTable.txt")
+PerformanceData <- read_csv("Data/OnRaceOffRace_OutputTable.txt")
 
 #set playerid as factor
 PerformanceData$PlayerID=as.factor(PerformanceData$PlayerID)
@@ -240,13 +235,7 @@ counts<-table(PerformanceData$PlayerID)
 PerformanceData$PlayerID=droplevels(PerformanceData$PlayerID, exclude=names(counts[counts==0]))
 
 # get SC1 info from SQL
-mydb = dbConnect(MySQL(), user='dataTwo',  password=DATATWO2,
-                 dbname='bfl', host='cslab.psyc.sfu.ca', port=3306)
-
-CALL<- paste('select player as PlayerID, sc1_stop, sc1_begin, sc1_experience, sc1_melee, rts_play from sc2survey')
-
-rs = dbSendQuery(mydb, CALL)
-SurveyData=fetch(rs, n=-1)
+SurveyData=read_csv("Data/BFLSurveyData.csv")
 
 
 ## Cleaning
@@ -313,7 +302,7 @@ SC1.Plot <- ggplot(MergeAggroData, aes(x=numberofsc1years, y=Transformed_fal2Lea
 ### WoL to HotS Analysis ###
 
 ## Get Data
-wolVhos_OutputTable <- read_csv("F:/GitHub/InProgress/Starcraft/StarTransfer/Code/Current Data/wolVhos_OutputTable.txt")
+wolVhos_OutputTable <- read_csv("Data/wolVhos_OutputTable.txt")
 
 #Training is defined as Wol games in the Version analysis and HOTS is the test
 wolVhos_OutputTable$IsTraining=as.factor(wolVhos_OutputTable$IsWoL)
@@ -515,7 +504,7 @@ WoLtoHotS.XPplot <- ggplot(Wol_To_Hots_PredictionData, aes(x=Wol_n_i, y=WoltoHot
 ##  the only way to preserve font)
 
 # set working directory
-setwd('C:/Users/ocamb/Desktop/School Docs/CSL/StarTransfer/Plots')
+setwd(paste0(wd,'/Plots'))
 
 
 # Race
@@ -537,7 +526,9 @@ png('WoLtoHotSplot.png', width = 7.5, height = 3.5, units = 'in', res = 600)
 print(grid.arrange(WoLtoHotS.PlayerPlot, WoLtoHotS.Plot, WoLtoHotS.XPplot, ncol=3))
 dev.off()
 
-
+# This sets the working directory back to the location of this script in case you are running other code
+wd = dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(wd)
 
 
 

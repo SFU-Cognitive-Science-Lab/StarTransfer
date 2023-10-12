@@ -1,9 +1,7 @@
 #
-#
-# StarTrans sc1 Lmer Analysis
+# StarTransfer sc1 Analysis Script
 #
 # Author: Robin C. A. Barrett
-#
 #
 # Purpose: See if sc1 experience impacts sc2 performance
 # Expertise: Any_xp
@@ -11,8 +9,7 @@
 # Reviewed: Joe Thompson
 # Verified: Justin O'Camb
 #
-# Inputs: So long as the "Current Data" folder containing the OnRaceOffRace_OutputTable.txt is in the working directory, this script will run on its own.
-#
+# Inputs: So long as the "Data" folder containing the OnRaceOffRace_OutputTable.txt is in the working directory, this script will run on its own.
 #
 # Outputs: Results for the SC1 transfer analysis. There is no reliably detectable correlation between SC1 experience and
 #   performance in the first 3 games of SC2
@@ -50,9 +47,10 @@ library(finalfit)
 # Grab Data:
 
 # This sets the working directory to the location of this script
-setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+wd = dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(wd)
 
-PerformanceData <- read_csv("Current Data/OnRaceOffRace_OutputTable.txt") # path based on github location 
+PerformanceData <- read_csv("Data/OnRaceOffRace_OutputTable.txt") # path based on github location 
 
 #set PlayerID as factor
 PerformanceData$PlayerID=as.factor(PerformanceData$PlayerID)
@@ -128,7 +126,7 @@ kable(DroppedPlayers)
 
 # First get the Survey Data
 
-SurveyData <- read_csv("Current Data/BFLSurveyData.csv")
+SurveyData <- read_csv("Data/BFLSurveyData.csv")
 
 
 
